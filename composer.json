@@ -1,4 +1,14 @@
 {
+  "name": "hakuryo/slim-api-template",
+  "description": "A SLIM API template with php-di and firebase php jwt",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Hakuryo",
+      "email": "kevin.dere@univ-reims.fr"
+    }
+  ],
   "require": {
     "slim/slim": "^4.9",
     "firebase/php-jwt": "^5.5",
