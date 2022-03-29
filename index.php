@@ -17,7 +17,7 @@ require __DIR__ . '/vendor/autoload.php';
 // Create Container
 $container = new Container();
 // Init container with config Object
-new Config($container);
+$container->set('config', new Config());
 // Tell slim to insert our container if it create an app
 AppFactory::setContainer($container);
 // Instantiate an APP

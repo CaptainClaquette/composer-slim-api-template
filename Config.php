@@ -22,7 +22,7 @@ class Config
     /** @var Logger Monolog logger to have only one instance through the application */
     private $loggers;
 
-    public function __construct(Container &$container)
+    public function __construct()
     {
 
         $conf = parse_ini_file(self::CONFIG_FILE, true);
@@ -32,24 +32,8 @@ class Config
             ->setDecoded_var_name($conf['jwt']['decoded_var_name'])
             ->setToken_duration($conf['jwt']['token_duration'])
             ->setIssuer($conf['jwt']['issuer']);
-        $container->set('config', $this);
-        $this->register_controller($container);
+        $this->app_base_path = $conf['app']['base_path'];
     }
 
-    /**
-     * Registering all container to make them available for SLIM
-     *
-     * @param Container $container Application container to store config
-     * @return void
-     */
-    private function register_controller(Container &$container)
-    {
-        // if controller not located in /controllers just change the string value
-        foreach (glob(__DIR__ . "/controllers/*.php") as $filename) {
-            $container->set($filename, function (ContainerInterface $container) use ($filename) {
-                return new $filename($container);
-            });
-        }
-    }
 
 }

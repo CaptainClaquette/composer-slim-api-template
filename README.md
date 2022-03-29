@@ -22,10 +22,8 @@ This project is a SLIM API template bundled with the following composer package 
 ### Optional
 
 - PHP module :
-  -
-  oci8 [How to install OCI8](https://github.com/CaptainClaquette/composer-database-client/blob/main/How%20to%20install%20PHP%2C%20Instantclient%20and%20PHP_PDO_OCI.md)
-  -
-  pdo_oci [How to install PDO_OCI](https://github.com/CaptainClaquette/composer-database-client/blob/main/How%20to%20install%20PHP%2C%20Instantclient%20and%20PHP_PDO_OCI.md#php_pdo_oci)
+    - oci8 [How to install OCI8](https://github.com/CaptainClaquette/composer-database-client/blob/main/How%20to%20install%20PHP%2C%20Instantclient%20and%20PHP_PDO_OCI.md)
+    - pdo_oci [How to install PDO_OCI](https://github.com/CaptainClaquette/composer-database-client/blob/main/How%20to%20install%20PHP%2C%20Instantclient%20and%20PHP_PDO_OCI.md#php_pdo_oci)
 
 ## Install
 
@@ -35,12 +33,16 @@ This project is a SLIM API template bundled with the following composer package 
 
 This template is initialized by the Config class. The class load an INI file to configure the application.
 > :warning:  
-> The default location is `__DIR__ . "/config/config.ini"`. Please take note that's **NOT A GOOD** location for production. You **SHOULD** place the config file outside of your web root.
+> The default location is `__DIR__ . "/config/config.ini"`. Please take note that's **NOT A GOOD** location for production. You **SHOULD** place the config file outside your web root.
 > > If you can not place the INI file outside your web root please consider using ACL like htaccess to prevent the reading of the file.
 
 Below a sample config file.
 
 ```INI
+# Global APP config sample
+[app]
+bath_path=""
+
 # JWT token config sample
 [jwt]
 key = My_super_private_key; private Key for JWT generation
