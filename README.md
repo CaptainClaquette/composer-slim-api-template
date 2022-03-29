@@ -41,7 +41,7 @@ Below a sample config file.
 ```INI
 # Global APP config sample
 [app]
-bath_path=""
+base_path=""
 
 # JWT token config sample
 [jwt]
