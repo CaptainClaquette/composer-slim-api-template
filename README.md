@@ -2,12 +2,12 @@
 
 This project is a SLIM API template bundled with the following composer package :
 
-- slim/slim: 4.9+,
-- firebase/php-jwt: 5.5+,
-- monolog/monolog: 2.3+,
-- hakuryo/database-client": 1.3+,
-- php-di/php-di": 6.3+,
-- slim/psr7": 1.5+,
+- php: >=7.4
+- firebase/php-jwt: ^6.3
+- hakuryo/database-client: ^1.3
+- monolog/monolog: ^3.3.1
+- slim/psr7: ^1.5
+- slim/slim: ^4.9
 
 ## Requirement
 
@@ -33,15 +33,17 @@ This project is a SLIM API template bundled with the following composer package 
 
 This template is initialized by the Config class. The class load an INI file to configure the application.
 > :warning:  
-> The default location is `__DIR__ . "/config/config.ini"`. Please take note that's **NOT A GOOD** location for production. You **SHOULD** place the config file outside your web root.
-> > If you can not place the INI file outside your web root please consider using ACL like htaccess to prevent the reading of the file.
+> The default location is `__DIR__ . "/config/config.ini"`. Please take note that's **NOT A GOOD** location for
+> production. You **SHOULD** place the config file outside your web root.
+> > If you can not place the INI file outside your web root please consider using ACL like htaccess to prevent the
+> > reading of the file.
 
 Below a sample config file.
 
 ```INI
 # Global APP config sample
 [app]
-base_path=""
+base_path = ""
 
 # JWT token config sample
 [jwt]
@@ -75,4 +77,24 @@ USER = "my_user";
 PWD = "my_owd";
 PORT = 12345
 DRIVER = "oci"
+
+[app]
+# If API is not deployed on document root, app_base_path must be the relative path from document root
+app_base_path = "/"
+
+[logger]
+# Define the type of logger could be ErrorLogHandler,StreamHandler or RotatingFileHandler
+logger_class = "RotatingFileHandler"
+# Programmatic name of the logger
+logger_name = "myLogger"
+# Logger level could be one of debug,info,notice,warning,error,critical,emergency
+logger_level = "debug"
+# Define the Line format in the logger
+logger_line_format = "%datetime% %level_name% %message%"
+# Absolute path of the Log file.only used when logger_class is StreamHandler or RotatingFileHandler
+log_file_path = "/var/log/apache2/my_application.log"
+# File name format for RotatingFileHandler class
+log_file_name_format = "{date}-{filename}"
+# Date format used in log_file_name_format for RotatingFileHandler class
+log_file_name_date_format = "Y-m-d"
 ```
