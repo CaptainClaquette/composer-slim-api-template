@@ -1,12 +1,7 @@
 <?php
 
 use project\Config;
-use DI\Container;
-use Psr\Http\Message\RequestInterface;
-use Psr\Log\LoggerInterface;
-use Slim\Exception\HttpMethodNotAllowedException;
 use Slim\Factory\AppFactory;
-use project\classes\APIResponse;
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT,PATCH, OPTIONS');
@@ -14,18 +9,12 @@ header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 
 require __DIR__ . '/vendor/autoload.php';
 
-// Create Container
-$container = new Container();
-// Init container with config Object
-$container->set('config', new Config());
-// Tell slim to insert our container if it create an app
-AppFactory::setContainer($container);
+$config = Config::get_instance();
 // Instantiate an APP
 $app = AppFactory::create();
-
 // Set APP base path AKA the directory from Document ROOT where the APP is located
-$app->setBasePath($container->get('config')->app_base_path);
-// Add body parsing middleware. It's needed to use slim  getParsedBody Function
+$app->setBasePath($config->app_base_path);
+// Add body parsing middleware. It's needed to use slim getParsedBody Function
 $app->addBodyParsingMiddleware();
 
 //allow options method for all route. Needed to use API within webbrowser.
@@ -34,7 +23,7 @@ $app->options('/{routes:.+}', function ($request, $response, $args) {
 });
 
 // Register all our routes.
-foreach (glob("./routes/*.php") as $filename) {
+foreach (glob("./src/routes/*.php") as $filename) {
     (require $filename)($app);
 }
 

@@ -1,11 +1,9 @@
 <?php
 
-namespace project\daos;
+namespace project\src\daos;
 
-use Exception;
-use hakuryo\db\ConnectionDB;
-use project\classes\JWTHandler;
 use project\Config;
+use project\src\entities\JWTHandler;
 
 class AuthDAO
 {
@@ -24,7 +22,6 @@ class AuthDAO
         $data->displayname = "BOB MORAN";
         $data->mail = "bob.moran@supermail.com";
         $data->role = "Adventurer";
-        $jwt = JWTHandler::generate_jwt($data, $config->jwt);
-        return $jwt;
+        return JWTHandler::generate_jwt($data, $config->jwt);
     }
 }

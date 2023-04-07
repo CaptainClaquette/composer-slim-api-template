@@ -1,31 +1,27 @@
 <?php
 
-namespace project\controllers;
+namespace project\src\controllers;
 
-use DI\Container;
 use Exception;
 use InvalidArgumentException;
+use project\Config;
+use project\src\entities\APIResponse;
+use project\src\entities\validators\SampleDataValidator;
+use project\src\daos\SampleDAO;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use project\classes\APIResponse;
-use project\daos\SampleDAO;
-use SampleDataValidator;
 
 class SampleController
 {
-    /** @var Container the container of your app that store your config */
-    private $container;
-    public function __construct(Container $container)
+
+    public function __construct()
     {
-        $this->container = $container;
     }
 
     public function get_member(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         //get config singleton object
-        $config = $this->container->get('config');
-        //get jwt data
-        $jwt = $request->getAttribute($config->jwt->getDecoded_var_name());
+        $config = Config::get_instance();
 
         //get request body data (only with method POST,PUT,PATCH)
         //$data = json_decode(json_encode($request->getParsedBody()));
@@ -51,20 +47,16 @@ class SampleController
     public function add_data(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         //get config singleton object
-        $config = $this->container->get('config');
-        //get jwt data
-        $jwt = $request->getAttribute($config->jwt->getDecoded_var_name());
-
+        $config = Config::get_instance();
         //get request body data (only with method POST,PUT,PATCH)
         $data = json_decode(json_encode($request->getParsedBody()));
-        
         try {
             SampleDataValidator::validate_sample_operation_data($data);
             //execute operation. return muste be json_encodable
             $api_response = new APIResponse(0, APIResponse::RESPONSE_SUCCESS);
             if (SampleDAO::add_data($data)) {
                 $api_response->setMessage("Ajout reussi");
-            }else{
+            } else {
                 $api_response->setCode(3)->setMessage("Problème lors de l'ajout");
             }
             $response->getBody()->write(json_encode($api_response));

@@ -1,5 +1,8 @@
 <?php
 
+namespace project\src\entities\validators;
+
+use InvalidArgumentException;
 
 class SampleDataValidator
 {
@@ -25,7 +28,8 @@ class SampleDataValidator
         //...
     }
 
-    public static function validate_auth_data($data){
+    public static function validate_auth_data($data)
+    {
 
         if (!property_exists($data, "login") || !is_string($data->login)) {
             throw new InvalidArgumentException("login is not a string or does not exist", 2);

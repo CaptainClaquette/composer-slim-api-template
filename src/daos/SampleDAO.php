@@ -1,6 +1,6 @@
 <?php
 
-namespace project\daos;
+namespace project\src\daos;
 
 use hakuryo\db\ConnectionDB;
 use project\Config;

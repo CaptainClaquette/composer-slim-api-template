@@ -1,10 +1,9 @@
 <?php
 
-use Slim\Routing\RouteCollectorProxy;
+use project\src\controllers\SampleController;
+use project\src\middlewares\JWTCheckerMiddleware;
 use Slim\App;
-use project\controllers\SampleController;
-use project\middlewares\JSONHeaderMiddleware;
-use project\middlewares\JWTCheckerMiddleware;
+use Slim\Routing\RouteCollectorProxy;
 
 return function (App $app) {
     // Defining sample routes group
@@ -13,5 +12,5 @@ return function (App $app) {
         $group->get('/{id}', [SampleController::class, "get_data"])->setName('get');
         $group->post('', [SampleController::class, "add_data"])->setName('add');
         // Protecting route group through JWT testing and adding header application/json to response with middlewares
-    })->add(new JWTCheckerMiddleware($app->getContainer()->get('config')))->add(new JSONHeaderMiddleware());
+    })->add(new JWTCheckerMiddleware());
 };

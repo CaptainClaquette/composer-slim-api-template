@@ -1,15 +1,16 @@
 <?php
 
-namespace project\middlewares;
+namespace project\src\middlewares;
 
+use Firebase\JWT\BeforeValidException;
+use Firebase\JWT\ExpiredException;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+use Firebase\JWT\SignatureInvalidException;
+use project\Config;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Psr7\Response;
-use Firebase\JWT\JWT;
-use Firebase\JWT\SignatureInvalidException;
-use Firebase\JWT\BeforeValidException;
-use Firebase\JWT\ExpiredException;
-use project\Config;
 use UnexpectedValueException;
 
 /**
@@ -20,30 +21,30 @@ use UnexpectedValueException;
 class JWTCheckerMiddleware
 {
 
-    public $config;
 
-    public function __construct(Config $config)
+    public function __construct()
     {
-        $this->config = $config;
     }
 
     /**
      * Example middleware invokable class
      *
-     * @param  Request  $request PSR-7 request
-     * @param  RequestHandler $handler PSR-15 request handler
+     * @param Request $request PSR-7 request
+     * @param RequestHandler $handler PSR-15 request handler
      *
      * @return Response
      */
     public function __invoke(Request $request, RequestHandler $handler): Response
     {
+        $config = Config::get_instance();
         $authorization_headers = $request->getHeader('Authorization', null);
         $jwt = null;
         $response = new Response();
         if ($authorization_headers != null && 0 === stripos($authorization_headers[0], 'Bearer ')) {
             $jwt = substr($authorization_headers[0], 7);
             try {
-                $request = $request->withAttribute($this->config->jwt->getDecoded_var_name(), JWT::decode($jwt, $this->config->jwt->getPrivateKey(), [$this->config->jwt->getAlgorithm()]));
+                $jwt = JWT::decode($jwt, new Key($config->jwt->getPrivateKey(), $config->jwt->getAlgorithm()));
+                $config->user = $jwt->data;
                 return $handler->handle($request);
             } catch (SignatureInvalidException $e) {
                 $response->getBody()->write(json_encode(["error" => "Token", "message" => "Your token is corrupted"]));

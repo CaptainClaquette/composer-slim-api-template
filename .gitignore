@@ -2,3 +2,4 @@ vendor/
 config/
 test/
 .idea/
+logs/

@@ -1,6 +1,6 @@
 <?php
 
-namespace project\classes;
+namespace project\src\entities;
 
 class JWTConfig
 {

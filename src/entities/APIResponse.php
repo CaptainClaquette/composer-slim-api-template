@@ -1,12 +1,11 @@
 <?php
 
-namespace project\classes;
+namespace project\src\entities;
 
 use JsonSerializable;
 
 class APIResponse implements JsonSerializable
 {
-
     const RESPONSE_SUCCESS = "success";
     const RESPONSE_WARNING = "warn";
     const RESPONSE_ERROR = "error";
