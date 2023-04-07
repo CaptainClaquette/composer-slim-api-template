@@ -43,7 +43,7 @@ Below a sample config file.
 ```INI
 # Global APP config sample
 [app]
-base_path = ""
+base_path = "/"
 
 # JWT token config sample
 [jwt]
@@ -77,10 +77,6 @@ USER = "my_user";
 PWD = "my_owd";
 PORT = 12345
 DRIVER = "oci"
-
-[app]
-# If API is not deployed on document root, app_base_path must be the relative path from document root
-app_base_path = "/"
 
 [logger]
 # Define the type of logger could be ErrorLogHandler,StreamHandler or RotatingFileHandler
