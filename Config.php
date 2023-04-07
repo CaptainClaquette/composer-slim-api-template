@@ -9,7 +9,7 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Level;
 use Monolog\Logger;
 use project\src\entities\JWTConfig;
-
+use Exception;
 
 class Config
 {
@@ -87,6 +87,7 @@ class Config
             case 'emergency':
                 return Level::Emergency;
         }
+        return Level::Error;
     }
 
 
