@@ -1,21 +1,21 @@
 <?php
 
-namespace project;
+namespace urca\template\api;
 
+use Exception;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\ErrorLogHandler;
 use Monolog\Handler\RotatingFileHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Level;
 use Monolog\Logger;
-use project\src\entities\JWTConfig;
-use Exception;
+use urca\template\api\entities\JWTConfig;
 
 class Config
 {
 
     /** @var string ini file to configure application */
-    const CONFIG_FILE = __DIR__ . "/config/config.ini";
+    const CONFIG_FILE = __DIR__ . "/../config/config.ini";
     /** @var JWTConfig Object to store and access the jwt config */
     public $jwt;
     /** @var string base path of the slim API */

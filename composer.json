@@ -19,13 +19,9 @@
     "php": ">=7.4"
   },
   "autoload": {
-    "classmap": [
-      "src/controllers/",
-      "src/daos/",
-      "src/entities/",
-      "src/entities/validators",
-      "src/middlewares/",
-      "Config.php"
-    ]
+    "psr-4": {
+      "urca\\template\\api\\": "src/"
+    }
+
   }
 }

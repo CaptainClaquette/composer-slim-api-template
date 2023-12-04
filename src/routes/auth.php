@@ -1,6 +1,6 @@
 <?php
 
-use project\src\controllers\AuthController;
+use urca\template\api\controllers\AuthController;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
 

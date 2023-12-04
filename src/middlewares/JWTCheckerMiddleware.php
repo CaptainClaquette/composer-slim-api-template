@@ -1,17 +1,17 @@
 <?php
 
-namespace project\src\middlewares;
+namespace urca\template\api\middlewares;
 
 use Firebase\JWT\BeforeValidException;
 use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Firebase\JWT\SignatureInvalidException;
-use project\Config;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Psr7\Response;
 use UnexpectedValueException;
+use urca\template\api\Config;
 
 /**
  * Description of JWTCheckerMiddleware

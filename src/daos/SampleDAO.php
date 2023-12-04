@@ -1,9 +1,9 @@
 <?php
 
-namespace project\src\daos;
+namespace urca\template\api\daos;
 
 use hakuryo\db\ConnectionDB;
-use project\Config;
+use urca\template\api\Config;
 
 class SampleDAO
 {

@@ -1,15 +1,15 @@
 <?php
 
-namespace project\src\controllers;
+namespace urca\template\api\controllers;
 
 use Exception;
 use InvalidArgumentException;
-use project\Config;
-use project\src\entities\APIResponse;
-use project\src\entities\validators\SampleDataValidator;
-use project\src\daos\AuthDAO;
+use urca\template\api\daos\AuthDAO;
+use urca\template\api\entities\APIResponse;
+use urca\template\api\entities\validators\SampleDataValidator;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use urca\template\api\Config;
 
 class AuthController
 {

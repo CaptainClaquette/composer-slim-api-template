@@ -1,6 +1,6 @@
 <?php
 
-namespace project\src\entities\validators;
+namespace urca\template\api\entities\validators;
 
 use InvalidArgumentException;
 

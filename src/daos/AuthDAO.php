@@ -1,9 +1,9 @@
 <?php
 
-namespace project\src\daos;
+namespace urca\template\api\daos;
 
-use project\Config;
-use project\src\entities\JWTHandler;
+use urca\template\api\entities\JWTHandler;
+use urca\template\api\Config;
 
 class AuthDAO
 {

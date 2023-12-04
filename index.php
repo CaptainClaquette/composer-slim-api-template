@@ -1,7 +1,7 @@
 <?php
 
-use project\Config;
 use Slim\Factory\AppFactory;
+use urca\template\api\Config;
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT,PATCH, OPTIONS');

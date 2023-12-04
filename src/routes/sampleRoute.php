@@ -1,7 +1,7 @@
 <?php
 
-use project\src\controllers\SampleController;
-use project\src\middlewares\JWTCheckerMiddleware;
+use urca\template\api\controllers\SampleController;
+use urca\template\api\middlewares\JWTCheckerMiddleware;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
 

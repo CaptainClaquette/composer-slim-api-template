@@ -1,6 +1,6 @@
 <?php
 
-namespace project\src\entities;
+namespace urca\template\api\entities;
 
 use Firebase\JWT\JWT;
 
