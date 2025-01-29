@@ -18,7 +18,7 @@ class SampleController
     {
     }
 
-    public function get_member(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    public function get_data(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         //get config singleton object
         $config = Config::get_instance();
@@ -39,6 +39,7 @@ class SampleController
         } catch (InvalidArgumentException $iae) {
             $response->getBody()->write(json_encode(new APIResponse(2, APIResponse::RESPONSE_ERROR, "Les paramètre fournis sont invalide")));
         } catch (Exception $e) {
+            error_log($e->getMessage());
             $response->getBody()->write(json_encode(new APIResponse(1, APIResponse::RESPONSE_ERROR, "Erreur inconnu")));
         }
         return $response;
